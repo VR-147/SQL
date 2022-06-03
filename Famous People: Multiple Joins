@@ -1,0 +1,46 @@
+CREATE TABLE people(id integer primary key autoincrement, fullname text, age integer);
+
+Insert into people (fullname, age) values ("Lionel Messi", 34);
+
+Insert into people (fullname, age) values ("Bill Burr", 53);
+
+Insert into people (fullname, age) values ("Pedro Pascal", 47);
+
+Insert into people (fullname, age) values ("Beyonce Knowles", 40);
+
+Insert into people (fullname, age) values ("Serena Williams", 40);
+
+
+CREATE TABLE famous_for (id integer primary key autoincrement, person_id integer, name text);
+
+Insert into famous_for (person_id, name) values (5, "Tennis");
+
+Insert into famous_for (person_id, name) values (4, "Singing");
+
+Insert into famous_for (person_id, name) values (3, "Acting");
+
+Insert into famous_for (person_id, name) values (2, "Comedy");
+
+Insert into famous_for (person_id, name) values (1, "Soccer");
+
+
+CREATE TABLE friends (id integer primary key autoincrement, person1_id integer, person2_id integer);
+
+Insert into friends (person1_id, person2_id) values (2, 3);
+
+Insert into friends (person1_id, person2_id) values (4, 5);
+
+Insert into friends (person1_id, person2_id) values (3, 1);
+
+
+Select p.fullname, ff.name as profession
+from people p
+join famous_for ff
+on p.id=ff.person_id;
+
+Select a.fullname as friend1, b.fullname as friend2
+from friends f
+join people a
+on a.id=f.person1_id
+join people b
+on b.id=f.person2_id;
